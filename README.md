@@ -5,6 +5,8 @@ application up and running.
 
 Things you may want to cover:
 
+Build by https://dev.to/vannsl/vue3-on-rails-l9d
+
 * Ruby version
 
 * System dependencies
