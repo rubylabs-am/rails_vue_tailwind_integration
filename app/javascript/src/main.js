@@ -1,5 +1,6 @@
-import { createApp } from 'vue';
-import TurbolinksAdapter from 'vue-turbolinks';
+import { createApp, onBeforeMount, onMounted, onUnmounted, getCurrentInstance } from 'vue';
+// import TurbolinksAdapter from 'vue-turbolinks';
+import TurbolinksAdapter from './components/nested/turbolinks';
 import AllComponents from '@/components';
 
 const vueSelector = new RegExp('^v-');
@@ -18,6 +19,11 @@ function componentsNamesInMarkup(container) {
 
 export default {
   start() {
+    // document.addEventListener('turbolinks:load', function (event) {
+    //   document.querySelectorAll('a[href^="#"]').forEach(function (el) {
+    //     el.setAttribute('data-turbolinks', false);
+    //   });
+    // });
     document.addEventListener('turbolinks:load', () => {
       this.mountAppOnPage()
     })
