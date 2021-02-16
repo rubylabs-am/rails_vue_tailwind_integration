@@ -5,6 +5,8 @@ import "channels"
 
 import Vue from "@/main.js"
 
+import '../../stylesheets/application.sass'
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
