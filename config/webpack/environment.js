@@ -8,7 +8,8 @@ const { VueLoaderPlugin } = require('vue-loader')
 environment.config.merge({
   resolve:{
     alias: {
-      "@": path.resolve(__dirname, "..", "..", "app/javascript/src")
+      vue: 'vue/dist/vue.esm-bundler.js',
+      '@': path.resolve(__dirname, "..", "..", 'app/javascript/src')
     }
   }
 })
