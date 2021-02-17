@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  timeout: 5000
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool:     <%= ENV.fetch('RAILS_MAX_THREADS', 5) %>
+  host:     <%= ENV.fetch('POSTGRESQL_ADDRESS', 'localhost') %>
+  port:     <%= ENV.fetch('POSTGRESQL_PORT', 5432) %>
+  username: <%= ENV.fetch('POSTGRESQL_USERNAME', 'postgres') %>
+  password: <%= ENV.fetch('POSTGRESQL_PASSWORD', 'admin') %>
+  database: <%= ENV.fetch('POSTGRESQL_DATABASE', '') %>
+
+development:
+  <<: *default
+  database: vue_3_tailwind_2_rails_6_1_2_1_ruby_3_development
+
+test:
+  <<: *default
+  database: vue_3_tailwind_2_rails_6_1_2_1_ruby_3_test
+
+production:
+  <<: *default
