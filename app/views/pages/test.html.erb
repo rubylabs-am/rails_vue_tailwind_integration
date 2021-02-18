@@ -1,6 +1,6 @@
 <h1 class="pb-4 text-3xl">Pages#test</h1>
 <p>Find me in app/views/pages/test.html.erb</p>
 
-<div class="flex-col inline-flex space-y-3.5 mt-20">
+<div class="flex-col inline-flex space-y-4 mt-20">
   <v-test v-for="(message, index) in <%= @messages.to_json %>" :key="index" :message="message"></v-test>
 </div>
