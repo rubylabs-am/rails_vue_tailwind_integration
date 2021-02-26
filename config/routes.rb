@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   controller :pages do
     get :test
     get :another_test
+    get :to_do_list
   end
 end
