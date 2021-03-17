@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import TodoButton from './nested/todo_button';
+import TodoButton from './nested/general_button';
 import TestInput from './nested/test_input';
 
 export default {
