@@ -10,7 +10,7 @@
         bg-gradient-to-r from-yellow-100 to-green-200
         text-gray-500 rounded-lg shadow"
     >
-      Add
+      {{buttonName}}
     </button>
   </form>
 </template>
@@ -20,6 +20,12 @@ import { inject } from 'vue'
 
 export default {
   name: 'v-todo-item-form',
+
+  props: {
+    buttonName: {
+      type: String
+    }
+  },
 
   setup(props, { emit }) {
     const inputString = inject('inputString')

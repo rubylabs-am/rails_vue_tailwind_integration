@@ -1,6 +1,6 @@
 <template>
   <div class="p-6">
-    <label :for="inputID">
+    <label :for="inputID" class="pr-2">
       <slot>Test label</slot>
     </label>
     <input type="text" :id="inputID" v-model="message"/>

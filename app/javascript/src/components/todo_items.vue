@@ -1,8 +1,9 @@
 <template>
+  <link-to :url="`/todo_lists`">Back to list</link-to>
   <div class="py-3 text-4xl text-indigo-300 font-bold my-5">
     {{message}}
   </div>
-  <todo-item-form @form-submit="addItem"></todo-item-form>
+  <todo-item-form @form-submit="addItem" button-name="Add"></todo-item-form>
   <ol class="px-3 py-2 rounded-lg mt-2">
     <li v-for="(todoItem, index) in todoItems" class="my-2 flex">
       <p class="mr-4" >

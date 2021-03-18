@@ -1,5 +1,5 @@
 <template>
-  <a :href="url" class="mr-4 py-0 px-5
+  <a :href="url" class="mr-4 py-1 px-5
           ring-offset-2 hover:ring-1 hover:ring-indigo-500
           focus:ring-2 focus:ring-indigo-400 focus:outline-none
           bg-gradient-to-r from-yellow-100 to-green-200
