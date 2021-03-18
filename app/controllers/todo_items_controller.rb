@@ -1,7 +1,7 @@
 class TodoItemsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_todo_list, only: [:index, :create]
-  before_action :set_todo_item, only: [:edit, :update, :destroy]
+  before_action :set_todo_item, only: [:edit, :update, :destroy, :show]
 
   def index
     @todo_items =  @todo_list.todo_items
@@ -24,10 +24,12 @@ class TodoItemsController < ApplicationController
   def show
   end
 
-  def edit
-  end
-
   def update
+    if @todo_item.update todo_item_params
+      render json: { message: 'Todo item successful updated' }
+    else
+      render json: {  error_msg: 'Something is wrong' }
+    end
   end
 
   def destroy

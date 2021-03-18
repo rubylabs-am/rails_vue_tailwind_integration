@@ -9,9 +9,6 @@ class TodoListsController < ApplicationController
     end
   end
 
-  def new
-  end
-
   def create
     @todo_list = TodoList.new todo_list_params
     if @todo_list.save
@@ -21,10 +18,12 @@ class TodoListsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
+    if @todo_list.update todo_list_params
+      render json: { message: 'Todo list successful updated' }
+    else
+      render json: {  error_msg: 'Something is wrong' }
+    end
   end
 
   def destroy
