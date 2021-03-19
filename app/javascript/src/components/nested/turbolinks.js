@@ -15,6 +15,8 @@ const Mixin = {
     }
   },
   unmounted: function () {
+    if (this !== this.$root) return;
+
     const template = this.$.appContext.app._component.template;
     const container = this.$.appContext.app._container;
 
