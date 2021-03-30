@@ -1,7 +1,8 @@
 function handleVueDestruction(vue) {
   const event = vue.$options.destroyEvent || defaultEvent();
 
-  document.addEventListener(event, function teardown() {
+  document.addEventListener(event, function teardown(ev) {
+    console.log('turbolinks:visit', ev)
     vue.$.appContext.app.unmount();
     document.removeEventListener(event, teardown);
   });
@@ -15,6 +16,9 @@ const Mixin = {
     }
   },
   unmounted: function () {
+    console.log('unmounted', this)
+    if (this !== this.$root) return;
+
     const template = this.$.appContext.app._component.template;
     const container = this.$.appContext.app._container;
 
