@@ -18,9 +18,9 @@
     </form>
   </div>
   <ul>
-    <li v-for="todo in todoItems.slice().reverse()" :key="todo.id" class="flex mt-2 border relative">
+    <li v-for="todo in todoItems" :key="todo.id" class="flex mt-2 border relative">
       <label>
-        <input type="checkbox" @change="completeItem(todo.id, todo)"  v-model="todo.completed">
+        <input type="checkbox" @change="completeItem(todo)" :checked="todo.completed" class="m-1">
       </label>
       <div class="pl-4" v-if="todo.completed">
         <del>{{ todo.name }} {{ todo.details}}</del>
@@ -29,7 +29,7 @@
         <span>{{ todo.name }} {{ todo.details}}</span>
       </div>
       <div class="absolute right-0" >
-        <button class="bg-yellow-400 rounded-r-sm px-3" v-on:click="removeTodo(todo.id)">X</button>
+        <button class="bg-yellow-400  px-3 rounded-sm m-0.5" @click="removeTodo(todo.id)">X</button>
       </div>
     </li>
   </ul>
@@ -66,21 +66,25 @@ export default {
         details: details.value,
         todo_list_id: list.id
       }).then(response => {
-        todoItems.value.push(response.data)})
-      this.name = ''
-      this.details = ''
+        todoItems.value.unshift(response.data)
+      })
+      name.value = ''
+      details.value = ''
     }
 
-    function completeItem(id) {
-      axios.put(`/todo_lists/${props.list.id}/todo_items/${id}`, {
-        completed: event.target.checked,
+    function completeItem(todo) {
+      todo.completed = !todo.completed
+
+      axios.put(`/todo_lists/${props.list.id}/todo_items/${todo.id}`, {
+        completed: todo.completed,
       })
     }
 
     function removeTodo(id) {
-      axios.delete(`/todo_lists/${props.list.id}/todo_items/${id}.json`).then(response => {
-        this.todoItems = this.todoItems.filter(item => item.id !== id)
-      });
+      axios.delete(`/todo_lists/${props.list.id}/todo_items/${id}.json`)
+        .then(response => {
+          this.todoItems = this.todoItems.filter(item => item.id !== id)
+        })
     }
 
     return {

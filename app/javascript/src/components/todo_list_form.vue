@@ -1,5 +1,5 @@
 <template>
-  <p class="p-10 text-2xl text-yellow-500 font-bold my-10 capitalize"> {{ formTitle }} todo list</p>
+<!--  <p class="p-10 text-2xl text-yellow-500 font-bold my-10 capitalize"> {{ formTitle }} todo list</p>-->
   <div id="app">
     <form @submit.prevent="submitForm">
       <div class="flex mt-2">
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import {ref} from "vue";
+import { ref } from "vue";
 import axios from "axios";
 import VCrudButton from "./nested/crud_button";
 
@@ -27,23 +27,24 @@ export default {
     },
     form_type:{ type: String}
   },
-  setup(props) {
-    const name = ref(props.list.name)
+
+  setup(props, { emit }) {
+    const name = ref('')
     const formTitle = props.form_type
-    console.log(props.form_type)
+
     function submitForm() {
+      const todoList = { name: name.value }
+      let req;
+
       if (props.form_type === 'edit') {
-        axios.put(`/todo_lists/${props.list.id}`, {
-          name: name.value,
-        }).then(response => {
-          window.location.href = `/todo_lists/`
-        })
+        req = axios.put(`/todo_lists/${props.list.id}`, todoList)
       } else {
-        axios.post('/todo_lists', {
-          name: name.value
-        }).then(response => { window.location.href = `/todo_lists/` })
+        req = axios.post('/todo_lists', todoList)
       }
+
+      req.then((response) => emit('todoListResponse', response.data))
     }
+
     return {
       submitForm,
       name,
