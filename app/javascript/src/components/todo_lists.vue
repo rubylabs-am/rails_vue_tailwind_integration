@@ -1,13 +1,15 @@
 <template>
+  <h1 class="text-yellow-300 mt-2 my-5 px-5"> ADD TODO LIST </h1>
   <div>
     <v-todo-list-form form_type="create" id="create" @todoListResponse="onTodoListResponse"> </v-todo-list-form>
   </div>
+  <p class="p-10 text-center text-5xl text-yellow-300 font-bold">Todo Lists</p>
   <ul>
       <li v-for="list in todoLists" :key="list.id" class=" mt-2 border relative">
         <div class="flex mt-2 row-reverse">
-          <span class="mr-auto p-2"> <a :href="`/todo_lists/${list.id}`"> {{ list.name }}</a></span>
-          <v-crud-button v-on:click="list.isShow = !list.isShow"> EDIT </v-crud-button>
-          <v-crud-button @custom-clicked="deleteList(list.id)" > DELETE </v-crud-button>
+          <span class="mr-auto px-5"> <a :href="`/todo_lists/${list.id}`"> {{ list.name }}</a></span>
+            <v-crud-button v-on:click="list.isShow = !list.isShow"> {{ list.isShow ? 'CANCEL' : 'EDIT' }} </v-crud-button>
+            <v-crud-button @custom-clicked="deleteList(list.id)" > DELETE </v-crud-button>
         </div>
         <div>
           <v-todo-list-form  :list="list" v-show="list.isShow"   form_type="edit" id="edit" @todoListResponse="onTodoListResponse" > </v-todo-list-form>
