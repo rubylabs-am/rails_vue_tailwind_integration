@@ -6,4 +6,8 @@ class PagesController < ApplicationController
   end
 
   def another_test; end
+
+  def to_do_list
+
+  end
 end
